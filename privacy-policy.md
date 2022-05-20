@@ -1,7 +1,3 @@
-layout: page
-title: "Privacy Polocy"
-permalink: /privacy-policy/
-
 **Privacy Policy**
 
 R0ma1n built the GeoAlarm app as a Free app. This SERVICE is provided by R0ma1n at no cost and is intended for use as is.
