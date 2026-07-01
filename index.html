@@ -288,21 +288,16 @@
   footer{
     padding:48px 8vw 60px;
     border-top:1px solid rgba(255,255,255,.06);
-    display:flex; justify-content:space-between; align-items:center;
+    display:flex; justify-content:center; align-items:center;
     flex-wrap:wrap; gap:16px;
     color:var(--muted);
     font-size:.88rem;
   }
-  footer a{text-decoration:none; color:var(--muted); margin-left:20px; transition:color .2s;}
-  footer a:hover{color:var(--text);}
-
   @media (max-width:720px){
     header{padding:18px 6vw;}
     nav a{margin-left:16px; font-size:.85rem;}
     section{padding:80px 6vw;}
     .app-card.featured{flex-direction:column; align-items:flex-start;}
-    footer{flex-direction:column; text-align:center;}
-    footer a{margin-left:0; margin-right:16px;}
   }
 </style>
 </head>
@@ -397,10 +392,6 @@
 
 <footer>
   <div>© <span id="year"></span> Romain Goutte-Fangeas</div>
-  <div>
-    <a href="privacy-policy.html">Politique de confidentialité</a>
-    <a href="terms-conditions.html">Conditions d'utilisation</a>
-  </div>
 </footer>
 
 <script>
