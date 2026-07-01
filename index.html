@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Romain Goutte-Fangeas — Développeur Android natif & Kotlin Multiplatform</title>
-<meta name="description" content="Développeur Android depuis 2019. Apps grand public à plusieurs millions de téléchargements, développement natif et Kotlin Multiplatform. Retrouvez mes apps sur Google Play.">
+<title id="doc-title">Romain Goutte-Fangeas — Développeur Android natif & Kotlin Multiplatform</title>
+<meta id="doc-description" name="description" content="Développeur Android depuis 2019. Apps grand public à plusieurs millions de téléchargements, développement natif et Kotlin Multiplatform. Retrouvez mes apps sur Google Play.">
 <link rel="icon" href="data:,">
 <style>
   :root{
@@ -82,6 +82,29 @@
     transition:color .2s;
   }
   nav a:hover{color:var(--blue-deep);}
+
+  .header-right{display:flex; align-items:center;}
+
+  .lang-switch{
+    display:flex; align-items:center;
+    margin-left:28px;
+    border:1px solid var(--card-border);
+    border-radius:999px;
+    padding:3px;
+    background:#fff;
+  }
+  .lang-switch button{
+    border:none; background:none; cursor:pointer;
+    font-size:.78rem; font-weight:700; letter-spacing:.03em;
+    color:var(--muted);
+    padding:5px 12px;
+    border-radius:999px;
+    transition:background .2s, color .2s;
+  }
+  .lang-switch button.active{
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    color:#fff;
+  }
 
   main{position:relative; z-index:1;}
 
@@ -413,8 +436,10 @@
   @media (max-width:720px){
     header{flex-direction:column; gap:10px; padding:16px 6vw;}
     .logo{font-size:1rem;}
+    .header-right{flex-direction:column; gap:12px;}
     nav{display:flex; gap:14px;}
     nav a{margin-left:0; font-size:.82rem;}
+    .lang-switch{margin-left:0;}
     section{padding:80px 6vw;}
     .stats-band{grid-template-columns:1fr; gap:32px;}
   }
@@ -428,32 +453,38 @@
 
 <header>
   <div class="logo"><span class="dot"></span> Romain Goutte-Fangeas</div>
-  <nav>
-    <a href="#focus">Mon approche</a>
-    <a href="#apps">Mes apps</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="header-right">
+    <nav>
+      <a href="#focus" data-i18n="nav.focus">Mon approche</a>
+      <a href="#apps" data-i18n="nav.apps">Mes apps</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="lang-switch">
+      <button type="button" data-lang="fr">FR</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
 </header>
 
 <main>
   <section class="hero">
     <div class="hero-copy">
-      <span class="eyebrow">Développeur Android depuis 2019</span>
-      <h1>Des apps natives <span class="grad">solides</span>,<br>prêtes pour l'ère <span class="grad">multiplatform</span>.</h1>
-      <p>J'ai contribué à plusieurs applications grand public totalisant plusieurs millions de téléchargements. Aujourd'hui, je me concentre sur le développement natif Android et sur Kotlin Multiplatform.</p>
+      <span class="eyebrow" data-i18n="hero.eyebrow">Développeur Android depuis 2019</span>
+      <h1 data-i18n="hero.title">Des apps natives <span class="grad">solides</span>,<br>prêtes pour l'ère <span class="grad">multiplatform</span>.</h1>
+      <p data-i18n="hero.text">J'ai contribué à plusieurs applications grand public totalisant plusieurs millions de téléchargements. Aujourd'hui, je me concentre sur le développement natif Android et sur Kotlin Multiplatform.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://play.google.com/store/apps/developer?id=Romain+Goutte-Fangeas" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zM16.81 15.12l-2.6-2.6-9.86 9.86 12.46-7.26zM20.16 10.81c.5.29.84.83.84 1.19s-.34.9-.84 1.19l-3.13 1.82-2.93-2.93 2.93-2.93 3.13 1.66zM14.21 11.5L4.34 1.65l12.46 7.26-2.6 2.59z"/></svg>
-          Voir mes apps sur Google Play
+          <span data-i18n="hero.ctaPrimary">Voir mes apps sur Google Play</span>
         </a>
-        <a class="btn btn-ghost" href="#focus">Mon approche</a>
+        <a class="btn btn-ghost" href="#focus" data-i18n="hero.ctaGhost">Mon approche</a>
       </div>
     </div>
     <div class="hero-visual">
       <div class="chip chip-1">📍 GeoAlarm</div>
       <div class="chip chip-2">📲 Kotlin</div>
       <div class="chip chip-3">🍎 iOS + 🤖 Android</div>
-      <div class="chip chip-4">⬇️ Millions d'installs</div>
+      <div class="chip chip-4" data-i18n="chip.installs">⬇️ Millions d'installs</div>
       <div class="phone">
         <div class="code"><span class="k">expect</span> <span class="k">class</span> Platform() {
   <span class="k">fun</span> name(): <span class="k">String</span>
@@ -471,36 +502,36 @@
     <div class="stats-band reveal">
       <div class="stat-tile">
         <b><span id="years">0</span>+</b>
-        <span class="stat-label">ans d'expérience Android</span>
+        <span class="stat-label" data-i18n="stats.years.label">ans d'expérience Android</span>
       </div>
       <div class="stat-tile">
         <b>Millions</b>
-        <span class="stat-label">de téléchargements cumulés</span>
+        <span class="stat-label" data-i18n="stats.downloads.label">de téléchargements cumulés</span>
       </div>
       <div class="stat-tile">
         <b>Kotlin</b>
-        <span class="stat-label">natif &amp; multiplatform</span>
+        <span class="stat-label" data-i18n="stats.kotlin.label">natif &amp; multiplatform</span>
       </div>
     </div>
   </section>
 
   <section id="focus">
     <div class="section-head reveal">
-      <span class="tag">Ce qui me passionne</span>
-      <h2>Natif quand ça compte, partagé quand c'est possible</h2>
-      <p>Je crois à un développement mobile pragmatique : la performance et les sensations natives d'Android, complétées par la puissance de Kotlin Multiplatform pour partager la logique métier avec iOS.</p>
+      <span class="tag" data-i18n="focus.tag">Ce qui me passionne</span>
+      <h2 data-i18n="focus.heading">Natif quand ça compte, partagé quand c'est possible</h2>
+      <p data-i18n="focus.text">Je crois à un développement mobile pragmatique : la performance et les sensations natives d'Android, complétées par la puissance de Kotlin Multiplatform pour partager la logique métier avec iOS.</p>
     </div>
 
     <div class="focus-grid">
       <div class="focus-card reveal">
         <div class="focus-icon">🤖</div>
-        <h3>Développement natif Android</h3>
-        <p>Kotlin, Jetpack Compose et les API Android modernes pour livrer des apps rapides, fiables et agréables à utiliser au quotidien par des millions d'utilisateurs.</p>
+        <h3 data-i18n="focus.card1.title">Développement natif Android</h3>
+        <p data-i18n="focus.card1.text">Kotlin, Jetpack Compose et les API Android modernes pour livrer des apps rapides, fiables et agréables à utiliser au quotidien par des millions d'utilisateurs.</p>
       </div>
       <div class="focus-card reveal">
         <div class="focus-icon">🔗</div>
         <h3>Kotlin Multiplatform</h3>
-        <p>Partager la logique métier entre Android et iOS sans sacrifier le natif : moins de duplication, plus de cohérence, et une UI qui reste 100% native sur chaque plateforme.</p>
+        <p data-i18n="focus.card2.text">Partager la logique métier entre Android et iOS sans sacrifier le natif : moins de duplication, plus de cohérence, et une UI qui reste 100% native sur chaque plateforme.</p>
       </div>
       <div class="kmp-diagram reveal">
         <div class="kmp-visual">
@@ -521,7 +552,7 @@
           <div class="kmp-merge"></div>
           <div class="kmp-node shared">
             <span class="icon">🧩</span>
-            <b>Logique métier partagée</b>
+            <b data-i18n="kmp.shared.title">Logique métier partagée</b>
             <span>Kotlin Multiplatform</span>
           </div>
         </div>
@@ -532,19 +563,19 @@
   <section id="apps">
     <div class="section-head reveal">
       <span class="tag">Portfolio</span>
-      <h2>Des applications pensées pour être utilisées</h2>
-      <p>Un aperçu de ce que je construis. Toutes mes apps sont disponibles gratuitement sur le Play Store.</p>
+      <h2 data-i18n="apps.heading">Des applications pensées pour être utilisées</h2>
+      <p data-i18n="apps.text">Un aperçu de ce que je construis. Toutes mes apps sont disponibles gratuitement sur le Play Store.</p>
     </div>
 
     <div class="apps-grid">
       <div class="app-card featured reveal">
         <div class="app-icon">📍</div>
         <div class="app-copy">
-          <span class="badge">App phare</span>
+          <span class="badge" data-i18n="apps.badge">App phare</span>
           <h3>GeoAlarm</h3>
-          <p>Ne manquez plus jamais votre arrêt. GeoAlarm déclenche une alarme dès que vous atteignez la position GPS que vous avez définie — parfait pour les trajets en train, bus ou avion sans stresser de regarder son téléphone en continu.</p>
+          <p data-i18n="apps.geoalarm.text">Ne manquez plus jamais votre arrêt. GeoAlarm déclenche une alarme dès que vous atteignez la position GPS que vous avez définie — parfait pour les trajets en train, bus ou avion sans stresser de regarder son téléphone en continu.</p>
           <a class="link" href="https://play.google.com/store/apps/developer?id=Romain+Goutte-Fangeas" target="_blank" rel="noopener">
-            Voir sur Google Play
+            <span data-i18n="link.playstore">Voir sur Google Play</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
         </div>
@@ -552,10 +583,10 @@
 
       <div class="app-card reveal">
         <div class="app-icon">🚀</div>
-        <h3>Et la suite ?</h3>
-        <p>Je travaille régulièrement sur de nouvelles idées d'applications. Retrouvez toutes mes créations, présentes et futures, directement sur mon profil développeur.</p>
+        <h3 data-i18n="apps.next.title">Et la suite ?</h3>
+        <p data-i18n="apps.next.text">Je travaille régulièrement sur de nouvelles idées d'applications. Retrouvez toutes mes créations, présentes et futures, directement sur mon profil développeur.</p>
         <a class="link" href="https://play.google.com/store/apps/developer?id=Romain+Goutte-Fangeas" target="_blank" rel="noopener">
-          Explorer mon profil
+          <span data-i18n="link.explore">Explorer mon profil</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
       </div>
@@ -564,11 +595,11 @@
 
   <section id="contact">
     <div class="cta-band reveal">
-      <h2>Envie de découvrir mes applications ?</h2>
-      <p>Retrouvez toutes mes apps, mises à jour et nouveautés directement sur Google Play.</p>
+      <h2 data-i18n="cta.heading">Envie de découvrir mes applications ?</h2>
+      <p data-i18n="cta.text">Retrouvez toutes mes apps, mises à jour et nouveautés directement sur Google Play.</p>
       <a class="btn btn-primary" href="https://play.google.com/store/apps/developer?id=Romain+Goutte-Fangeas" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zM16.81 15.12l-2.6-2.6-9.86 9.86 12.46-7.26zM20.16 10.81c.5.29.84.83.84 1.19s-.34.9-.84 1.19l-3.13 1.82-2.93-2.93 2.93-2.93 3.13 1.66zM14.21 11.5L4.34 1.65l12.46 7.26-2.6 2.59z"/></svg>
-        Ouvrir mon profil Google Play
+        <span data-i18n="cta.button">Ouvrir mon profil Google Play</span>
       </a>
     </div>
   </section>
@@ -579,6 +610,100 @@
 </footer>
 
 <script>
+  const translations = {
+    fr: {
+      'doc.title': "Romain Goutte-Fangeas — Développeur Android natif & Kotlin Multiplatform",
+      'doc.description': "Développeur Android depuis 2019. Apps grand public à plusieurs millions de téléchargements, développement natif et Kotlin Multiplatform. Retrouvez mes apps sur Google Play.",
+      'nav.focus': "Mon approche",
+      'nav.apps': "Mes apps",
+      'nav.contact': "Contact",
+      'hero.eyebrow': "Développeur Android depuis 2019",
+      'hero.title': 'Des apps natives <span class="grad">solides</span>,<br>prêtes pour l\'ère <span class="grad">multiplatform</span>.',
+      'hero.text': "J'ai contribué à plusieurs applications grand public totalisant plusieurs millions de téléchargements. Aujourd'hui, je me concentre sur le développement natif Android et sur Kotlin Multiplatform.",
+      'hero.ctaPrimary': "Voir mes apps sur Google Play",
+      'hero.ctaGhost': "Mon approche",
+      'chip.installs': "⬇️ Millions d'installs",
+      'stats.years.label': "ans d'expérience Android",
+      'stats.downloads.label': "de téléchargements cumulés",
+      'stats.kotlin.label': "natif &amp; multiplatform",
+      'focus.tag': "Ce qui me passionne",
+      'focus.heading': "Natif quand ça compte, partagé quand c'est possible",
+      'focus.text': "Je crois à un développement mobile pragmatique : la performance et les sensations natives d'Android, complétées par la puissance de Kotlin Multiplatform pour partager la logique métier avec iOS.",
+      'focus.card1.title': "Développement natif Android",
+      'focus.card1.text': "Kotlin, Jetpack Compose et les API Android modernes pour livrer des apps rapides, fiables et agréables à utiliser au quotidien par des millions d'utilisateurs.",
+      'focus.card2.text': "Partager la logique métier entre Android et iOS sans sacrifier le natif : moins de duplication, plus de cohérence, et une UI qui reste 100% native sur chaque plateforme.",
+      'kmp.shared.title': "Logique métier partagée",
+      'apps.heading': "Des applications pensées pour être utilisées",
+      'apps.text': "Un aperçu de ce que je construis. Toutes mes apps sont disponibles gratuitement sur le Play Store.",
+      'apps.badge': "App phare",
+      'apps.geoalarm.text': "Ne manquez plus jamais votre arrêt. GeoAlarm déclenche une alarme dès que vous atteignez la position GPS que vous avez définie — parfait pour les trajets en train, bus ou avion sans stresser de regarder son téléphone en continu.",
+      'link.playstore': "Voir sur Google Play",
+      'apps.next.title': "Et la suite ?",
+      'apps.next.text': "Je travaille régulièrement sur de nouvelles idées d'applications. Retrouvez toutes mes créations, présentes et futures, directement sur mon profil développeur.",
+      'link.explore': "Explorer mon profil",
+      'cta.heading': "Envie de découvrir mes applications ?",
+      'cta.text': "Retrouvez toutes mes apps, mises à jour et nouveautés directement sur Google Play.",
+      'cta.button': "Ouvrir mon profil Google Play"
+    },
+    en: {
+      'doc.title': "Romain Goutte-Fangeas — Native Android & Kotlin Multiplatform Developer",
+      'doc.description': "Android developer since 2019. Consumer apps with millions of downloads, native development and Kotlin Multiplatform. Check out my apps on Google Play.",
+      'nav.focus': "My approach",
+      'nav.apps': "My apps",
+      'nav.contact': "Contact",
+      'hero.eyebrow': "Android developer since 2019",
+      'hero.title': 'Solid <span class="grad">native</span> apps,<br>ready for the <span class="grad">multiplatform</span> era.',
+      'hero.text': "I've contributed to several consumer apps totalling millions of downloads. Today, I focus on native Android development and Kotlin Multiplatform.",
+      'hero.ctaPrimary': "See my apps on Google Play",
+      'hero.ctaGhost': "My approach",
+      'chip.installs': "⬇️ Millions of installs",
+      'stats.years.label': "years of Android experience",
+      'stats.downloads.label': "combined downloads",
+      'stats.kotlin.label': "native &amp; multiplatform",
+      'focus.tag': "What I'm passionate about",
+      'focus.heading': "Native when it matters, shared when it makes sense",
+      'focus.text': "I believe in pragmatic mobile development: the performance and feel of native Android, complemented by the power of Kotlin Multiplatform to share business logic with iOS.",
+      'focus.card1.title': "Native Android development",
+      'focus.card1.text': "Kotlin, Jetpack Compose and modern Android APIs to ship fast, reliable apps that millions of users enjoy using every day.",
+      'focus.card2.text': "Share business logic between Android and iOS without sacrificing native feel: less duplication, more consistency, and UIs that stay 100% native on each platform.",
+      'kmp.shared.title': "Shared business logic",
+      'apps.heading': "Apps designed to be used",
+      'apps.text': "A look at what I build. All my apps are free to download on the Play Store.",
+      'apps.badge': "Flagship app",
+      'apps.geoalarm.text': "Never miss your stop again. GeoAlarm triggers an alarm as soon as you reach the GPS location you set — perfect for train, bus or plane journeys without having to stare at your phone the whole time.",
+      'link.playstore': "View on Google Play",
+      'apps.next.title': "What's next?",
+      'apps.next.text': "I regularly work on new app ideas. Find all my creations, present and future, directly on my developer profile.",
+      'link.explore': "Explore my profile",
+      'cta.heading': "Want to check out my apps?",
+      'cta.text': "Find all my apps, updates and new releases directly on Google Play.",
+      'cta.button': "Open my Google Play profile"
+    }
+  };
+
+  function applyLang(lang) {
+    const dict = translations[lang] || translations.en;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.getElementById('doc-title').textContent = dict['doc.title'];
+    document.getElementById('doc-description').setAttribute('content', dict['doc.description']);
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    localStorage.setItem('lang', lang);
+  }
+
+  const savedLang = localStorage.getItem('lang');
+  const browserLang = (navigator.language || 'en').slice(0, 2);
+  applyLang(savedLang || (browserLang === 'fr' ? 'fr' : 'en'));
+
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+  });
+
   document.getElementById('year').textContent = new Date().getFullYear();
 
   const revealEls = document.querySelectorAll('.reveal');
