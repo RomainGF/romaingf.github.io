@@ -303,14 +303,6 @@
   }
   .kmp-lines path.ios-line{stroke:var(--indigo);}
 
-  .kmp-merge{
-    position:absolute; left:50%; top:63%;
-    width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%;
-    background:radial-gradient(circle, var(--blue), transparent 70%);
-    animation:mergePulse 2.2s ease-in-out infinite;
-  }
-  @keyframes mergePulse{0%,100%{transform:scale(1); opacity:.6;}50%{transform:scale(1.7); opacity:.15;}}
-
   /* Shared logic brick */
   .kmp-node{
     position:absolute;
@@ -321,7 +313,7 @@
     padding:6px;
     box-shadow:0 12px 26px -14px rgba(20,66,196,.3);
   }
-  .kmp-node .icon{font-size:1.3rem; line-height:1;}
+  .kmp-node .icon{font-size:1.3rem; line-height:1; margin-bottom:6px;}
   .kmp-node b{font-size:.84rem; color:var(--ink);}
   .kmp-node span{font-size:.7rem; color:var(--muted);}
 
@@ -608,7 +600,6 @@
             <div class="kmp-caption"><b>iOS</b><span data-i18n="kmp.nativeapp">App native</span></div>
           </div>
 
-          <div class="kmp-merge"></div>
           <div class="kmp-node shared">
             <span class="icon">🧩</span>
             <b data-i18n="kmp.shared.title">Logique métier partagée</b>
