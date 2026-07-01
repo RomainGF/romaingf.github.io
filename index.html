@@ -249,6 +249,7 @@
     gap:28px;
     align-items:stretch;
   }
+  .kmp-diagram{grid-column:1 / -1;}
   .focus-card{
     background:var(--card);
     border:1px solid var(--card-border);
@@ -276,21 +277,57 @@
     background:var(--card);
     border:1px solid var(--card-border);
     border-radius:20px;
-    padding:40px;
+    padding:36px 24px;
     display:flex; align-items:center; justify-content:center;
   }
-  .kmp-diagram svg{width:100%; max-width:420px; height:auto;}
-  .kmp-node{font-size:.82rem; font-weight:700; fill:var(--ink); text-anchor:middle;}
-  .kmp-line{
+  .kmp-visual{
+    position:relative;
+    width:100%;
+    max-width:460px;
+    aspect-ratio:460/240;
+  }
+  .kmp-lines{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
+  .kmp-lines path{
+    fill:none;
     stroke:var(--blue);
     stroke-width:2.5;
-    fill:none;
-    stroke-dasharray:6 8;
-    animation:dashFlow 2.4s linear infinite;
+    stroke-linecap:round;
+    stroke-dasharray:7 9;
+    animation:dashFlow 2.2s linear infinite;
   }
-  @keyframes dashFlow{to{stroke-dashoffset:-140;}}
-  .kmp-pulse{animation:pulse 2.6s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{r:38;}50%{r:42;}}
+  .kmp-lines path.ios-line{stroke:var(--indigo);}
+  @keyframes dashFlow{to{stroke-dashoffset:-160;}}
+
+  .kmp-node{
+    position:absolute;
+    border-radius:16px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    gap:3px;
+    padding:6px;
+    box-shadow:0 12px 26px -14px rgba(20,66,196,.3);
+  }
+  .kmp-node .icon{font-size:1.4rem; line-height:1;}
+  .kmp-node b{font-size:.9rem; color:var(--ink);}
+  .kmp-node span{font-size:.76rem; color:var(--muted);}
+
+  .kmp-node.android{top:0; left:0; width:43.5%; height:29.2%; background:#fff; border:1.5px solid var(--card-border);}
+  .kmp-node.ios{top:0; right:0; width:43.5%; height:29.2%; background:#fff; border:1.5px solid var(--card-border);}
+  .kmp-node.shared{
+    top:66.7%; left:21.7%; width:56.5%; height:30.8%;
+    background:linear-gradient(135deg,var(--blue),var(--indigo));
+    box-shadow:0 16px 34px -14px rgba(47,107,255,.55);
+  }
+  .kmp-node.shared b, .kmp-node.shared span{color:#fff;}
+  .kmp-node.shared span{opacity:.85;}
+
+  .kmp-merge{
+    position:absolute; left:50%; top:59%;
+    width:20px; height:20px; margin:-10px 0 0 -10px; border-radius:50%;
+    background:radial-gradient(circle, var(--blue), transparent 70%);
+    animation:mergePulse 2.2s ease-in-out infinite;
+  }
+  @keyframes mergePulse{0%,100%{transform:scale(1); opacity:.6;}50%{transform:scale(1.6); opacity:.15;}}
 
   .apps-grid{
     display:grid;
@@ -466,20 +503,28 @@
         <p>Partager la logique métier entre Android et iOS sans sacrifier le natif : moins de duplication, plus de cohérence, et une UI qui reste 100% native sur chaque plateforme.</p>
       </div>
       <div class="kmp-diagram reveal">
-        <svg viewBox="0 0 320 220">
-          <path class="kmp-line" d="M160,110 L70,50"></path>
-          <path class="kmp-line" d="M160,110 L250,50"></path>
-          <path class="kmp-line" d="M160,110 L160,190"></path>
-          <circle class="kmp-pulse" cx="160" cy="110" r="38" fill="rgba(47,107,255,.15)" stroke="#2f6bff" stroke-width="2"></circle>
-          <text class="kmp-node" x="160" y="106">Logique</text>
-          <text class="kmp-node" x="160" y="122">partagée</text>
-          <circle cx="70" cy="50" r="30" fill="#fff" stroke="#12b8c9" stroke-width="2"></circle>
-          <text class="kmp-node" x="70" y="54">Android</text>
-          <circle cx="250" cy="50" r="30" fill="#fff" stroke="#6a5cf5" stroke-width="2"></circle>
-          <text class="kmp-node" x="250" y="54">iOS</text>
-          <circle cx="160" cy="190" r="26" fill="#fff" stroke="#2f6bff" stroke-width="2"></circle>
-          <text class="kmp-node" x="160" y="194">UI natives</text>
-        </svg>
+        <div class="kmp-visual">
+          <svg class="kmp-lines" viewBox="0 0 460 240" preserveAspectRatio="none">
+            <path class="android-line" d="M100,70 Q100,130 230,160"></path>
+            <path class="ios-line" d="M360,70 Q360,130 230,160"></path>
+          </svg>
+          <div class="kmp-node android">
+            <span class="icon">🤖</span>
+            <b>UI Android</b>
+            <span>Jetpack Compose</span>
+          </div>
+          <div class="kmp-node ios">
+            <span class="icon">🍎</span>
+            <b>UI iOS</b>
+            <span>SwiftUI</span>
+          </div>
+          <div class="kmp-merge"></div>
+          <div class="kmp-node shared">
+            <span class="icon">🧩</span>
+            <b>Logique métier partagée</b>
+            <span>Kotlin Multiplatform</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
