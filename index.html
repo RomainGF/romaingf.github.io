@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Romain Goutte-Fangeas — Développeur d'apps mobiles</title>
+<meta name="description" content="Applications Android créées par Romain Goutte-Fangeas. Découvrez GeoAlarm et toutes mes apps sur Google Play.">
+<link rel="icon" href="data:,">
+<style>
+  :root{
+    --bg:#0b0d17;
+    --bg-soft:#11142200;
+    --card:#151a2b;
+    --card-border:#242b45;
+    --text:#eef0fb;
+    --muted:#9aa3c2;
+    --accent:#7c5cff;
+    --accent-2:#00d9c0;
+    --accent-3:#ff5fa2;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+
+  /* Animated background blobs */
+  .blob{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.45;
+    z-index:0;
+    pointer-events:none;
+  }
+  .blob-1{
+    width:520px;height:520px;
+    background:radial-gradient(circle, var(--accent), transparent 70%);
+    top:-160px; left:-120px;
+    animation:float1 16s ease-in-out infinite;
+  }
+  .blob-2{
+    width:460px;height:460px;
+    background:radial-gradient(circle, var(--accent-2), transparent 70%);
+    top:20%; right:-160px;
+    animation:float2 20s ease-in-out infinite;
+  }
+  .blob-3{
+    width:400px;height:400px;
+    background:radial-gradient(circle, var(--accent-3), transparent 70%);
+    bottom:-140px; left:30%;
+    animation:float3 18s ease-in-out infinite;
+  }
+  @keyframes float1{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(60px,80px) scale(1.15);}
+  }
+  @keyframes float2{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(-70px,50px) scale(1.1);}
+  }
+  @keyframes float3{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(50px,-60px) scale(1.2);}
+  }
+
+  header{
+    position:sticky; top:0; z-index:20;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 8vw;
+    backdrop-filter:blur(14px);
+    background:rgba(11,13,23,.55);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .logo{
+    font-weight:700; font-size:1.1rem; letter-spacing:.02em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 0 16px var(--accent);
+  }
+  nav a{
+    text-decoration:none; color:var(--muted); margin-left:28px; font-size:.95rem;
+    transition:color .2s;
+  }
+  nav a:hover{color:var(--text);}
+
+  main{position:relative; z-index:1;}
+
+  section{
+    padding:120px 8vw;
+    max-width:1200px;
+    margin:0 auto;
+  }
+
+  .hero{
+    min-height:88vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:60px;
+  }
+  .eyebrow{
+    color:var(--accent-2);
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:.8rem;
+    margin-bottom:18px;
+    opacity:0;
+    animation:fadeUp .8s .1s ease forwards;
+  }
+  h1{
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    line-height:1.08;
+    margin:0 0 24px;
+    background:linear-gradient(120deg,#fff 30%, var(--accent-2) 65%, var(--accent) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    opacity:0;
+    animation:fadeUp .8s .25s ease forwards;
+  }
+  .hero p{
+    font-size:clamp(1.05rem,2vw,1.3rem);
+    color:var(--muted);
+    max-width:640px;
+    margin:0 0 44px;
+    opacity:0;
+    animation:fadeUp .8s .4s ease forwards;
+  }
+  .cta-row{
+    display:flex; gap:18px; flex-wrap:wrap;
+    opacity:0;
+    animation:fadeUp .8s .55s ease forwards;
+  }
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(22px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 26px;
+    border-radius:14px;
+    font-weight:600;
+    font-size:1rem;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#0b0d17;
+    box-shadow:0 8px 30px -8px rgba(124,92,255,.6);
+  }
+  .btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 36px -8px rgba(124,92,255,.85);
+  }
+  .btn-ghost{
+    color:var(--text);
+    border-color:var(--card-border);
+    background:rgba(255,255,255,.02);
+  }
+  .btn-ghost:hover{
+    transform:translateY(-3px);
+    background:rgba(255,255,255,.07);
+  }
+  .btn svg{width:20px;height:20px;flex:none;}
+
+  .reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .section-head{margin-bottom:56px;}
+  .section-head .tag{
+    color:var(--accent-2); text-transform:uppercase; letter-spacing:.14em;
+    font-size:.78rem; font-weight:700; margin-bottom:12px; display:block;
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem,3.4vw,2.6rem);
+    margin:0 0 12px;
+  }
+  .section-head p{color:var(--muted); max-width:600px; margin:0;}
+
+  .apps-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+  }
+  .app-card{
+    background:linear-gradient(160deg, var(--card), rgba(21,26,43,.4));
+    border:1px solid var(--card-border);
+    border-radius:20px;
+    padding:32px;
+    position:relative;
+    overflow:hidden;
+    transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  .app-card::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 30% 0%, rgba(124,92,255,.18), transparent 60%);
+    opacity:0;
+    transition:opacity .35s ease;
+  }
+  .app-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(124,92,255,.5);
+    box-shadow:0 20px 50px -20px rgba(0,0,0,.6);
+  }
+  .app-card:hover::before{opacity:1;}
+  .app-icon{
+    width:56px; height:56px; border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem;
+    margin-bottom:22px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 10px 24px -8px rgba(124,92,255,.55);
+  }
+  .app-card h3{margin:0 0 10px; font-size:1.3rem;}
+  .app-card p{color:var(--muted); font-size:.96rem; line-height:1.55; margin:0 0 22px;}
+  .app-card .link{
+    display:inline-flex; align-items:center; gap:8px;
+    font-weight:600; font-size:.92rem;
+    color:var(--accent-2);
+    text-decoration:none;
+  }
+  .app-card .link svg{width:16px;height:16px; transition:transform .25s;}
+  .app-card .link:hover svg{transform:translate(4px,-2px);}
+
+  .app-card.featured{
+    grid-column:span 2;
+    display:flex; align-items:center; gap:36px;
+    flex-wrap:wrap;
+  }
+  .app-card.featured .app-copy{flex:1; min-width:240px;}
+  .app-card.featured .app-icon{margin-bottom:14px;}
+
+  .badge{
+    display:inline-block;
+    font-size:.72rem; font-weight:700;
+    color:var(--accent-3);
+    background:rgba(255,95,162,.12);
+    border:1px solid rgba(255,95,162,.35);
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:14px;
+    letter-spacing:.04em;
+  }
+
+  .stats{
+    display:flex; gap:56px; flex-wrap:wrap;
+    margin-top:8px;
+  }
+  .stat b{
+    display:block; font-size:2.2rem;
+    background:linear-gradient(120deg,var(--accent-2),var(--accent));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .stat span{color:var(--muted); font-size:.85rem;}
+
+  .cta-band{
+    text-align:center;
+    background:linear-gradient(135deg, rgba(124,92,255,.15), rgba(0,217,192,.1));
+    border:1px solid var(--card-border);
+    border-radius:28px;
+    padding:72px 6vw;
+  }
+  .cta-band h2{font-size:clamp(1.6rem,3.4vw,2.4rem); margin:0 0 16px;}
+  .cta-band p{color:var(--muted); margin:0 0 34px;}
+
+  footer{
+    padding:48px 8vw 60px;
+    border-top:1px solid rgba(255,255,255,.06);
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+    color:var(--muted);
+    font-size:.88rem;
+  }
+  footer a{text-decoration:none; color:var(--muted); margin-left:20px; transition:color .2s;}
+  footer a:hover{color:var(--text);}
+
+  @media (max-width:720px){
+    header{padding:18px 6vw;}
+    nav a{margin-left:16px; font-size:.85rem;}
+    section{padding:80px 6vw;}
+    .app-card.featured{flex-direction:column; align-items:flex-start;}
+    footer{flex-direction:column; text-align:center;}
+    footer a{margin-left:0; margin-right:16px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<header>
+  <div class="logo"><span class="dot"></span> Romain Goutte-Fangeas</div>
+  <nav>
+    <a href="#apps">Mes apps</a>
+    <a href="#about">À propos</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="eyebrow">Développeur Android indépendant</span>
+    <h1>Je crée des applications mobiles<br>simples, utiles et bien pensées.</h1>
+    <p>Du concept au Play Store : je conçois des apps Android qui résolvent de vrais problèmes du quotidien, avec un soin particulier pour l'expérience utilisateur.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/developer?id=Romain+Goutte-Fangeas" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zM16.81 15.12l-2.6-2.6-9.86 9.86 12.46-7.26zM20.16 10.81c.5.29.84.83.84 1.19s-.34.9-.84 1.19l-3.13 1.82-2.93-2.93 2.93-2.93 3.13 1.66zM14.21 11.5L4.34 1.65l12.46 7.26-2.6 2.59z"/></svg>
+        Voir mes apps sur Google Play
+      </a>
+      <a class="btn btn-ghost" href="#apps">
+        Découvrir GeoAlarm
+      </a>
+    </div>
+  </section>
+
+  <section id="apps">
+    <div class="section-head reveal">
+      <span class="tag">Portfolio</span>
+      <h2>Des applications pensées pour être utilisées</h2>
+      <p>Un aperçu de ce que je construis. Toutes mes apps sont disponibles gratuitement sur le Play Store.</p>
+    </div>
+
+    <div class="apps-grid">
+      <div class="app-card featured reveal">
+        <div class="app-icon">📍</div>
+        <div class="app-copy">
+          <span class="badge">App phare</span>
+          <h3>GeoAlarm</h3>
+          <p>Ne manquez plus jamais votre arrêt. GeoAlarm déclenche une alarme dès que vous atteignez la position GPS que vous avez définie — parfait pour les trajets en train, bus ou avion sans stresser de regarder son téléphone en continu.</p>
+          <a class="link" href="https://play.google.com/store/apps/developer?id=Romain+Goutte-Fangeas" target="_blank" rel="noopener">
+            Voir sur Google Play
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="app-card reveal">
+        <div class="app-icon">🚀</div>
+        <h3>Et la suite ?</h3>
+        <p>Je travaille régulièrement sur de nouvelles idées d'applications. Retrouvez toutes mes créations, présentes et futures, directement sur mon profil développeur.</p>
+        <a class="link" href="https://play.google.com/store/apps/developer?id=Romain+Goutte-Fangeas" target="_blank" rel="noopener">
+          Explorer mon profil
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head reveal">
+      <span class="tag">À propos</span>
+      <h2>Une approche simple : résoudre un vrai problème, bien.</h2>
+      <p>Chaque projet part d'un besoin concret. L'objectif n'est pas d'accumuler des fonctionnalités, mais de livrer une app fiable, rapide et agréable à utiliser.</p>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><b>100%</b><span>Apps gratuites</span></div>
+      <div class="stat"><b>Android</b><span>Plateforme principale</span></div>
+      <div class="stat"><b>🇫🇷</b><span>Développé en France</span></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="cta-band reveal">
+      <h2>Envie de découvrir mes applications ?</h2>
+      <p>Retrouvez toutes mes apps, mises à jour et nouveautés directement sur Google Play.</p>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/developer?id=Romain+Goutte-Fangeas" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zM16.81 15.12l-2.6-2.6-9.86 9.86 12.46-7.26zM20.16 10.81c.5.29.84.83.84 1.19s-.34.9-.84 1.19l-3.13 1.82-2.93-2.93 2.93-2.93 3.13 1.66zM14.21 11.5L4.34 1.65l12.46 7.26-2.6 2.59z"/></svg>
+        Ouvrir mon profil Google Play
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>© <span id="year"></span> Romain Goutte-Fangeas</div>
+  <div>
+    <a href="privacy-policy.html">Politique de confidentialité</a>
+    <a href="terms-conditions.html">Conditions d'utilisation</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
