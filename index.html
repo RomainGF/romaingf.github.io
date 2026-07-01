@@ -290,7 +290,7 @@
     position:relative;
     width:100%;
     max-width:400px;
-    aspect-ratio:500/360;
+    aspect-ratio:500/460;
   }
   .kmp-lines{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
   .kmp-lines path{
@@ -305,7 +305,7 @@
   @keyframes dashFlow{to{stroke-dashoffset:-160;}}
 
   .kmp-merge{
-    position:absolute; left:50%; top:51.9%;
+    position:absolute; left:50%; top:63%;
     width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%;
     background:radial-gradient(circle, var(--blue), transparent 70%);
     animation:mergePulse 2.2s ease-in-out infinite;
@@ -327,46 +327,46 @@
   .kmp-node span{font-size:.7rem; color:var(--muted);}
 
   .kmp-node.shared{
-    top:54.2%; left:18%; width:64%; height:38.9%;
+    top:65.2%; left:18%; width:64%; height:30.4%;
     background:linear-gradient(135deg,var(--blue),var(--indigo));
     box-shadow:0 16px 34px -14px rgba(47,107,255,.55);
   }
   .kmp-node.shared b, .kmp-node.shared span{color:#fff;}
   .kmp-node.shared span{opacity:.85;}
 
-  /* Phone mockups with a fake, animated app screen */
+  /* Phone mockups (18:9 screens) with a fake, animated app */
   .kmp-phone{
-    position:absolute; top:0; width:44%; height:41.7%;
-    display:flex; flex-direction:column; align-items:center; gap:5%;
+    position:absolute; top:0; width:20%; height:56.5%;
+    display:flex; flex-direction:column; align-items:center; gap:8%;
   }
   .kmp-phone.android{left:0;}
   .kmp-phone.ios{right:0;}
   .kmp-phone-bezel{
     position:relative;
-    width:78%; flex:1;
-    background:linear-gradient(160deg,#0d1b3d,#1442c4);
-    border:2.5px solid #fff;
-    box-shadow:0 12px 24px -10px rgba(20,66,196,.4);
-    overflow:hidden;
+    width:100%;
+    aspect-ratio:9/18;
+    background:#0a0a0a;
+    box-shadow:0 12px 22px -10px rgba(20,66,196,.4);
   }
-  .kmp-phone.android .kmp-phone-bezel{border-radius:13%;}
-  .kmp-phone.ios .kmp-phone-bezel{border-radius:22%;}
+  .kmp-phone.android .kmp-phone-bezel{border-radius:15%;}
+  .kmp-phone.ios .kmp-phone-bezel{border-radius:19%;}
   .kmp-cam{
-    position:absolute; top:6%; left:50%; width:7%; aspect-ratio:1;
+    position:absolute; top:5.5%; left:50%; width:11%; aspect-ratio:1;
     transform:translateX(-50%);
-    border-radius:50%; background:rgba(255,255,255,.25);
+    border-radius:50%; background:#000;
+    box-shadow:0 0 0 1.5px rgba(255,255,255,.06);
   }
   .kmp-notch{
-    position:absolute; top:5%; left:50%; width:32%; height:8%;
+    position:absolute; top:4.5%; left:50%; width:36%; height:5.5%;
     transform:translateX(-50%);
-    border-radius:8px; background:#04081a;
+    border-radius:999px; background:#000;
   }
   .kmp-screen{
-    position:absolute; top:16%; right:7%; bottom:6%; left:7%;
+    position:absolute; inset:2.5% 5%;
     background:#eef4ff; overflow:hidden;
   }
   .kmp-phone.android .kmp-screen{border-radius:10%;}
-  .kmp-phone.ios .kmp-screen{border-radius:16%;}
+  .kmp-phone.ios .kmp-screen{border-radius:13%;}
 
   /* Android fake app: top bar + skeleton rows + FAB */
   .kmp-topbar{position:absolute; top:0; left:0; right:0; height:20%; background:linear-gradient(135deg,var(--blue),var(--cyan));}
@@ -410,7 +410,7 @@
     100%{left:14%;}
   }
 
-  .kmp-caption{line-height:1.25;}
+  .kmp-caption{line-height:1.25; white-space:nowrap;}
   .kmp-caption b{display:block; font-size:.82rem; color:var(--ink);}
   .kmp-caption span{font-size:.68rem; color:var(--muted);}
 
@@ -581,20 +581,20 @@
       </div>
       <div class="kmp-diagram reveal">
         <div class="kmp-visual">
-          <svg class="kmp-lines" viewBox="0 0 500 360" preserveAspectRatio="none">
-            <path class="android-line" d="M110,150 Q110,180 250,195"></path>
-            <path class="ios-line" d="M390,150 Q390,180 250,195"></path>
+          <svg class="kmp-lines" viewBox="0 0 500 460" preserveAspectRatio="none">
+            <path class="android-line" d="M50,200 Q50,250 250,300"></path>
+            <path class="ios-line" d="M450,200 Q450,250 250,300"></path>
           </svg>
 
           <div class="kmp-phone android">
             <div class="kmp-phone-bezel">
-              <div class="kmp-cam"></div>
               <div class="kmp-screen">
                 <div class="kmp-topbar"></div>
                 <div class="kmp-row r1"></div>
                 <div class="kmp-row r2"></div>
                 <div class="kmp-row r3"></div>
                 <div class="kmp-fab"></div>
+                <div class="kmp-cam"></div>
               </div>
             </div>
             <div class="kmp-caption"><b>Android</b><span data-i18n="kmp.nativeapp">App native</span></div>
@@ -602,13 +602,13 @@
 
           <div class="kmp-phone ios">
             <div class="kmp-phone-bezel">
-              <div class="kmp-notch"></div>
               <div class="kmp-screen">
                 <div class="kmp-card"></div>
                 <div class="kmp-tabbar">
                   <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
                   <span class="kmp-tab-indicator"></span>
                 </div>
+                <div class="kmp-notch"></div>
               </div>
             </div>
             <div class="kmp-caption"><b>iOS</b><span data-i18n="kmp.nativeapp">App native</span></div>
