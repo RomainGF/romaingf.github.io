@@ -166,7 +166,7 @@
     font-weight:700;
     font-size:1rem;
     text-decoration:none;
-    border:1px solid transparent;
+    border:none;
     transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
     cursor:pointer;
   }
@@ -178,7 +178,7 @@
   .btn-primary:hover{transform:translateY(-3px); box-shadow:0 16px 34px -8px rgba(47,107,255,.7);}
   .btn-ghost{
     color:var(--blue-deep);
-    border-color:var(--card-border);
+    border:1.5px solid var(--card-border);
     background:#fff;
   }
   .btn-ghost:hover{transform:translateY(-3px); background:#f2f7ff;}
@@ -217,23 +217,6 @@
   }
   .phone .code .k{color:#66e0ff;}
   .phone .code .s{color:#8fffb0;}
-  .chip{
-    position:absolute;
-    display:flex; align-items:center; gap:8px;
-    background:#fff;
-    border:1px solid var(--card-border);
-    border-radius:999px;
-    padding:9px 16px;
-    font-size:.82rem; font-weight:700;
-    color:var(--ink);
-    box-shadow:0 12px 24px -12px rgba(20,66,196,.35);
-    animation:chipFloat 6s ease-in-out infinite;
-  }
-  .chip-1{top:6%; left:-6%; animation-delay:0s;}
-  .chip-2{top:38%; right:-14%; animation-delay:1.2s;}
-  .chip-3{bottom:14%; left:-12%; animation-delay:2.4s;}
-  .chip-4{bottom:0%; right:2%; animation-delay:.6s;}
-  @keyframes chipFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
 
   .reveal{opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
@@ -398,18 +381,6 @@
   .app-card.featured .app-copy{flex:1; min-width:240px;}
   .app-card.featured .app-icon{margin-bottom:14px;}
 
-  .badge{
-    display:inline-block;
-    font-size:.72rem; font-weight:800;
-    color:var(--indigo);
-    background:rgba(106,92,245,.1);
-    border:1px solid rgba(106,92,245,.3);
-    padding:4px 10px;
-    border-radius:999px;
-    margin-bottom:14px;
-    letter-spacing:.04em;
-  }
-
   .cta-band{
     text-align:center;
     background:linear-gradient(135deg, rgba(47,107,255,.12), rgba(18,184,201,.1));
@@ -481,10 +452,6 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="chip chip-1">📍 GeoAlarm</div>
-      <div class="chip chip-2">📲 Kotlin</div>
-      <div class="chip chip-3">🍎 iOS + 🤖 Android</div>
-      <div class="chip chip-4" data-i18n="chip.installs">⬇️ Millions d'installs</div>
       <div class="phone">
         <div class="code"><span class="k">expect</span> <span class="k">class</span> Platform() {
   <span class="k">fun</span> name(): <span class="k">String</span>
@@ -571,10 +538,9 @@
       <div class="app-card featured reveal">
         <div class="app-icon">📍</div>
         <div class="app-copy">
-          <span class="badge" data-i18n="apps.badge">App phare</span>
           <h3>GeoAlarm</h3>
           <p data-i18n="apps.geoalarm.text">Ne manquez plus jamais votre arrêt. GeoAlarm déclenche une alarme dès que vous atteignez la position GPS que vous avez définie — parfait pour les trajets en train, bus ou avion sans stresser de regarder son téléphone en continu.</p>
-          <a class="link" href="https://play.google.com/store/apps/developer?id=Romain+Goutte-Fangeas" target="_blank" rel="noopener">
+          <a class="link" href="https://play.google.com/store/apps/details?id=com.r0ma1n.geoalarm" target="_blank" rel="noopener">
             <span data-i18n="link.playstore">Voir sur Google Play</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
@@ -622,7 +588,6 @@
       'hero.text': "J'ai contribué à plusieurs applications grand public totalisant plusieurs millions de téléchargements. Aujourd'hui, je me concentre sur le développement natif Android et sur Kotlin Multiplatform.",
       'hero.ctaPrimary': "Voir mes apps sur Google Play",
       'hero.ctaGhost': "Mon approche",
-      'chip.installs': "⬇️ Millions d'installs",
       'stats.years.label': "ans d'expérience Android",
       'stats.downloads.label': "de téléchargements cumulés",
       'stats.kotlin.label': "natif &amp; multiplatform",
@@ -635,7 +600,6 @@
       'kmp.shared.title': "Logique métier partagée",
       'apps.heading': "Des applications pensées pour être utilisées",
       'apps.text': "Un aperçu de ce que je construis. Toutes mes apps sont disponibles gratuitement sur le Play Store.",
-      'apps.badge': "App phare",
       'apps.geoalarm.text': "Ne manquez plus jamais votre arrêt. GeoAlarm déclenche une alarme dès que vous atteignez la position GPS que vous avez définie — parfait pour les trajets en train, bus ou avion sans stresser de regarder son téléphone en continu.",
       'link.playstore': "Voir sur Google Play",
       'apps.next.title': "Et la suite ?",
@@ -656,7 +620,6 @@
       'hero.text': "I've contributed to several consumer apps totalling millions of downloads. Today, I focus on native Android development and Kotlin Multiplatform.",
       'hero.ctaPrimary': "See my apps on Google Play",
       'hero.ctaGhost': "My approach",
-      'chip.installs': "⬇️ Millions of installs",
       'stats.years.label': "years of Android experience",
       'stats.downloads.label': "combined downloads",
       'stats.kotlin.label': "native &amp; multiplatform",
@@ -669,7 +632,6 @@
       'kmp.shared.title': "Shared business logic",
       'apps.heading': "Apps designed to be used",
       'apps.text': "A look at what I build. All my apps are free to download on the Play Store.",
-      'apps.badge': "Flagship app",
       'apps.geoalarm.text': "Never miss your stop again. GeoAlarm triggers an alarm as soon as you reach the GPS location you set — perfect for train, bus or plane journeys without having to stare at your phone the whole time.",
       'link.playstore': "View on Google Play",
       'apps.next.title': "What's next?",
