@@ -406,7 +406,7 @@
 
   .apps-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(2,1fr);
     gap:28px;
   }
   .app-card{
@@ -449,6 +449,7 @@
   }
   .app-card.featured .app-copy{flex:1; min-width:240px;}
   .app-card.featured .app-icon{margin-bottom:14px;}
+  .app-card.wide{grid-column:1 / -1;}
 
   .cta-band{
     text-align:center;
@@ -472,6 +473,7 @@
     .hero{grid-template-columns:1fr; text-align:left;}
     .hero-visual{height:360px; margin-top:20px;}
     .app-card.featured{flex-direction:column; align-items:flex-start;}
+    .apps-grid{grid-template-columns:1fr;}
   }
   @media (max-width:720px){
     header{flex-direction:column; gap:10px; padding:16px 6vw;}
@@ -630,7 +632,19 @@
         </div>
       </div>
 
-      <div class="app-card reveal">
+      <div class="app-card featured reveal">
+        <div class="app-icon">🙂</div>
+        <div class="app-copy">
+          <h3>Emoti</h3>
+          <p data-i18n="apps.emoti.text">Identifiez une émotion, notez ce qui l'a provoquée, et gardez un historique simple pour mieux vous comprendre. Tout reste stocké localement sur votre téléphone, sans compte ni synchronisation.</p>
+          <a class="link" href="https://play.google.com/store/apps/details?id=com.r0ma1n.emoti" target="_blank" rel="noopener">
+            <span data-i18n="link.playstore">Voir sur Google Play</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="app-card wide reveal">
         <div class="app-icon">🚀</div>
         <h3 data-i18n="apps.next.title">Et la suite ?</h3>
         <p data-i18n="apps.next.text">Je travaille régulièrement sur de nouvelles idées d'applications. Retrouvez toutes mes créations, présentes et futures, directement sur mon profil développeur.</p>
@@ -684,6 +698,7 @@
       'apps.heading': "Des applications pensées pour être utilisées",
       'apps.text': "Un aperçu de ce que je construis. Toutes mes apps sont disponibles gratuitement sur le Play Store.",
       'apps.geoalarm.text': "Ne manquez plus jamais votre arrêt. GeoAlarm déclenche une alarme dès que vous atteignez la position GPS que vous avez définie — parfait pour les trajets en train, bus ou avion sans stresser de regarder son téléphone en continu.",
+      'apps.emoti.text': "Identifiez une émotion, notez ce qui l'a provoquée, et gardez un historique simple pour mieux vous comprendre. Tout reste stocké localement sur votre téléphone, sans compte ni synchronisation.",
       'link.playstore': "Voir sur Google Play",
       'apps.next.title': "Et la suite ?",
       'apps.next.text': "Je travaille régulièrement sur de nouvelles idées d'applications. Retrouvez toutes mes créations, présentes et futures, directement sur mon profil développeur.",
@@ -716,6 +731,7 @@
       'apps.heading': "Apps designed to be used",
       'apps.text': "A look at what I build. All my apps are free to download on the Play Store.",
       'apps.geoalarm.text': "Never miss your stop again. GeoAlarm triggers an alarm as soon as you reach the GPS location you set — perfect for train, bus or plane journeys without having to stare at your phone the whole time.",
+      'apps.emoti.text': "Identify an emotion, jot down what triggered it, and keep a simple history to better understand yourself. Everything stays stored locally on your phone, with no account and no sync.",
       'link.playstore': "View on Google Play",
       'apps.next.title': "What's next?",
       'apps.next.text': "I regularly work on new app ideas. Find all my creations, present and future, directly on my developer profile.",
